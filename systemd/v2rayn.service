@@ -1,0 +1,17 @@
+[Unit]
+Description=v2rayN GUI Service
+After=graphical-session.target hyprland.service
+Wants=graphical-session.target
+
+[Service]
+Type=simple
+ExecStartPre=/bin/sh -c 'sleep 2'
+ExecStart=/your/path/v2rayN
+WorkingDirectory=/your/path
+Environment=DISPLAY=:0
+Environment=WAYLAND_DISPLAY=wayland-1
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=graphical-session.target

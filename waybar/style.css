@@ -1,0 +1,26 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: monospace;
+    font-size: 14px;
+}
+
+window#waybar {
+    background: rgba(26, 26, 26, 0.8);
+    color: #ffffff;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background: transparent;
+    color: #ffffff;
+}
+
+#workspaces button.active {
+    background: #33ccff;
+    color: #000000;
+}
+
+#clock, #cpu, #memory, #pulseaudio, #network, #tray {
+    padding: 0 10px;
+}
