@@ -1,6 +1,6 @@
 # ❄️ NixOS + Hyprland Dotfiles
 
-Мой рабочий декларативный сетап NixOS с минималистичным Hyprland на Wayland, заточенный под сетевую разработку, обход блокировок и максимальную производительность на **NVIDIA**.
+Мой рабочий декларативный сетап NixOS с минималистичным Hyprland на Wayland, заточенный под сетевую разработку, кросс-компиляцию ядра, обход DPI и максимальную производительность на **NVIDIA**.
 
 ![NixOS](https://img.shields.io/badge/NixOS-26.05-blue?logo=nixos)
 ![Hyprland](https://img.shields.io/badge/WM-Hyprland-00F5D4?logo=hyprland)
@@ -10,18 +10,18 @@
 
 ##  Особенности конфига
 
-* **Desktop Environment**: Hyprland (Wayland) с кастомными анимациями, фиксом под NVIDIA (`no_hardware_cursors`) и удобными биндами.
+* **Desktop Environment**: Hyprland (Wayland) с оптимизациями под NVIDIA (`nvidia-drm`, Ozone WL), баром `waybar`, уведомлениями `dunst`, меню `rofi` и обоями через `awww`.
+* **Browser**: **Firefox Nightly** (`latest.firefox-nightly-bin`), подключенный декларативно через оверлей `nixpkgs-mozilla`.
 * **Network & DPI Bypass**:
-  * Встроенный модуль **Zapret** (`nfqws`) с кастомными флагами десинхронизации (fake + multisplit).
-  * Собственный **Rust DoH Resolver** (`doh-stub`) в виде системного демона `systemd`.
-  * **WSTunnel over SOCKS5** — туннелирование SSH через WebSocket прямо из коробки.
-  * **v2rayN** — пользовательский `systemd`-сервис для автоматического фонового запуска GUI-клиента v2rayN при старте графической сессии Hyprland.
+  * Встроенный модуль **Zapret** (`nfqws`) с кастомными флагами десинхронизации (`fake,multisplit`).
+  * Собственный **Rust DoH Resolver** (`doh-stub`) в виде системного демона `systemd` на порту 53.
+  * **WSTunnel over SOCKS5** — туннелирование SSH через WebSocket в виде системной службы.
 * **Nix-LD**: Настроена полная совместимость с динамическими бинарниками (C/C++, Rust, Electron, GTK, Xorg), скомпилированными не под NixOS.
-* **Тулчейн и Софт**:
-  * **Dev**: Rust (`rustc`, `cargo`, `clippy`), Cursor AI, Git, Wireshark (с правами без root).
+* **Тулчейн и Разработка**:
+  * **Kernel & Embedded**: `gcc`, `clang`, `gnumake`, `flex`, `bison`, `libelf`, `ncurses`, `dtc`, а также кросс-компиляторы под `aarch64` и `armv7l`.
+  * **Dev**: Rust (`rustc`, `cargo`, `clippy`), VS Code / Cursor AI, Git, Wireshark (с правами без root).
   * **Mobile / Hardware**: `android-tools` (ADB/Fastboot), `scrcpy`, `usbutils`.
-  * **System**: `btop` с поддержкой CUDA, `yazi`, `kitty`, `pavucontrol`.
-
+  * **System**: `btop` с поддержкой CUDA, `yazi`, `kitty`, `pavucontrol`, `flatpak`.
 
 ---
 
@@ -32,7 +32,7 @@
 
 ---
 
-## Запуск сессии
+##  Запуск сессии
 
 Дисплей-менеджеры (SDDM/GDM) отключены из-за извечных приколов NVIDIA + Wayland. 
 
